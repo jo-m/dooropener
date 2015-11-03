@@ -82,6 +82,10 @@ Add this to `/etc/network/if-up.d` on your pi:
 
     su -c "autossh -f -N -q -i /home/dooropener/.ssh/id_rsa -R 5050:localhost:5050 -S none -oControlMaster=no -oUserKnownHostsFile=/dev/null -oStrictHostKeyChecking=no dooropener@stratus.eth.ec" dooropener
 
+Then add the following line to the sudoers file (command `visudo`) on your pi:
+
+    dooropener ALL=(ALL) NOPASSWD: /usr/local/bin/rpio
+
 ## Proxy server
 
     sudo adduser dooropener
@@ -108,6 +112,6 @@ Then, hash the token using `gen_hash.py` and add it to `config.txt` (copy the
 sample config file `config.txt.sample`).
 
 For logging, also add an incoming webhook here <https://ethec.slack.com/services/new/incoming-webhook>
-and set its url into `config.txt`.
+and set its url into `config.txt` `slack_webhook`.
 
 Thats it! You can now use `/opendoor` from Slack.

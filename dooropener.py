@@ -4,14 +4,16 @@ from flask import (
    Flask,
    request,
 )
-import json
-import requests
-import configparser
 import bcrypt
+import configparser
+import json
+import os
+import requests
 
 app = Flask(__name__)
 
 def do_open_door():
+    os.system('sudo rpio --setoutput 18:1; sudo rpio --setoutput 18:0')
     print('opened the door')
 
 def log_door(username):
