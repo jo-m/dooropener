@@ -1,17 +1,13 @@
 #!.venv/bin/python3
 
-from datetime import datetime
 from flask import (
    Flask,
-   render_template,
-   Response,
    request,
-   send_from_directory,
 )
-import html
 import json
 import requests
 import configparser
+import bcrypt
 
 app = Flask(__name__)
 
@@ -32,7 +28,7 @@ def dooropen():
     """
     Standard endpoint
     """
-    password = request.args.get('token', '').strip()
+    password = request.args.get('token', '').strip().encode('utf-8')
     user_id = request.args.get('user_id', '').strip()
     user_name = request.args.get('user_name', '').strip()
 
@@ -46,7 +42,7 @@ def dooropen():
 
 config = configparser.ConfigParser()
 config.read('config.txt')
-slack_token = config['dooropener']['slack_token']
+slack_token = config['dooropener']['slack_token'].encode('utf-8')
 slack_webhook = config['dooropener']['slack_webhook'].strip('\'"')
 
 if __name__ == '__main__':
