@@ -9,6 +9,7 @@ import configparser
 import json
 import os
 import requests
+from subprocess import Popen, PIPE
 
 app = Flask(__name__)
 
@@ -23,6 +24,13 @@ def log_message(msg):
         icon_emoji=':cws:'
     )
     requests.post(slack_webhook, data=json.dumps(payload))
+
+@app.route('/lan_ip/', methods=['GET'])
+def lan_ip():
+    """
+    Standard endpoint
+    """
+    return Popen(["ifconfig", "wlan0"], stdout=PIPE).communicate()[0]
 
 @app.route('/dooropen/', methods=['POST'])
 def dooropen():
