@@ -1,0 +1,5 @@
+[dooropener]
+# this is the hashed token from slack
+# to change it, use ./gen_hash.py
+slack_token = <your hash>
+slack_webhook = 'https://hooks.slack.com/services/.../.../...'

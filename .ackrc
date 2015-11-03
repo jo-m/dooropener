@@ -1,0 +1,6 @@
+# ~/.ackrc
+
+#ack is a tool like grep, designed for programmers with large trees of heterogeneous source code
+#to install ack, loot here: http://beyondgrep.com/install/
+
+--ignore-dir=.venv
