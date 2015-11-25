@@ -2,6 +2,7 @@
 
 from flask import (
    Flask,
+   Response,
    request,
 )
 import bcrypt
@@ -30,7 +31,8 @@ def lan_ip():
     """
     Standard endpoint
     """
-    return Popen(["ifconfig", "wlan0"], stdout=PIPE).communicate()[0]
+    ret = Popen(["/sbin/ifconfig", "wlan0"], stdout=PIPE).communicate()[0]
+    return Response(ret, mimetype='text/plain')
 
 @app.route('/dooropen/', methods=['POST'])
 def dooropen():
