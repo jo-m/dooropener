@@ -15,7 +15,7 @@ from subprocess import Popen, PIPE
 app = Flask(__name__)
 
 def do_open_door():
-    os.system('sudo rpio --setoutput 18:1; sudo rpio --setoutput 18:0')
+    os.system('sudo rpio --setoutput 18:1; sleep 1s; sudo rpio --setoutput 18:0')
     print('opened the door')
 
 def log_message(msg):
