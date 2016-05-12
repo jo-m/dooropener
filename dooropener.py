@@ -43,7 +43,14 @@ def dooropen():
     user_id = request.form['user_id'].strip()
     user_name = request.form['user_name'].strip()
 
-    if not bcrypt.hashpw(password, slack_token) == slack_token:
+    # Check the provided password against all stored tokens.
+    access_allowed = None
+    for slack_token in slack_tokens:
+        if bcrypt.hashpw(password, slack_token) == slack_token:
+            access_allowed = True
+            break
+
+    if not access_allowed:
         return 'Invalid token'
 
     msg = "User *%s (%s)* just opened the CWS door via _/dooropen_" % \
@@ -56,7 +63,7 @@ def dooropen():
 
 config = configparser.ConfigParser()
 config.read('config.txt')
-slack_token = config['dooropener']['slack_token'].encode('utf-8')
+slack_tokens = [x.encode('utf-8') for x in config['dooropener']['slack_tokens'].split(',')]
 slack_webhook = config['dooropener']['slack_webhook'].strip('\'"')
 
 if __name__ == '__main__':
