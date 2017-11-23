@@ -21,8 +21,8 @@ def do_open_door():
 def log_message(msg):
     payload = dict(
         text=msg,
-        username='cwsdoor',
-        icon_emoji=':cws:'
+        username='rockethub-door-opener',
+        icon_emoji=':door:'
     )
     requests.post(slack_webhook, data=json.dumps(payload))
 
@@ -53,7 +53,7 @@ def dooropen():
     if not access_allowed:
         return 'Invalid token'
 
-    msg = "User *%s (%s)* just opened the CWS door via _/dooropen_" % \
+    msg = ":office: :door: User *%s (%s)* just opened the RocketHub door via _/dooropen_" % \
         (user_name, user_id)
     log_message(msg)
 

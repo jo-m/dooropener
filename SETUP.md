@@ -58,7 +58,7 @@ Following <http://openmicros.org/index.php/articles/94-ciseco-product-documentat
     pip3 install --user virtualenv
     git clone https://github.com/jo-m/dooropener.git dooropener
     cd dooropener
-    ~/.local/bin/virtualenv -p python3 .venv
+    python3 -m venv .venv
     source .venv/bin/activate
     pip install -r requirements.txt
     crontab -e
@@ -101,18 +101,18 @@ Add the key like here:
     command="/bin/false",no-pty ssh-rsa AAAAB3Nz...GCBNc6P you@raspberrypi
 
 Also, the proxy server `/etc/ssh/sshd_config` needs the `GatewayPorts yes` option set.
-After a reboot, the app should be reachable at <http://gateway.eth.ec:5050/>.
+After a reboot, the app should be reachable at <http://138.68.85.236:5050/>.
 
 ## Slack setup
-Add a new slack command here: <https://ethec.slack.com/services/new/slash-commands>.
+Add a new slack command here: <https://ethec.slack.com/apps/A0F82E8CA-slash-commands>.
 
-* URL: <http://gateway.eth.ec:5050/dooropen/>
+* URL: <http://138.68.85.236:5050/dooropen/>
 * Method: `POST`
 
 Then, hash the token using `gen_hash.py` and add it to `config.txt` (copy the
 sample config file `config.txt.sample`).
 
-For logging, also add an incoming webhook here <https://ethec.slack.com/services/new/incoming-webhook>
+For logging, also add an incoming webhook here <https://ethec.slack.com/apps/A0F7XDUAZ-incoming-webhooks>
 and set its url into `config.txt` `slack_webhook`.
 
 Thats it! You can now use `/opendoor` from Slack.
