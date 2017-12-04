@@ -1,6 +1,6 @@
 # CWS Door Opener
 
-Running on a Raspberry Pi
+Running on a Raspberry Pi. [Setup](SETUP.md).
 
 ## Local setup
     pip install virtualenv

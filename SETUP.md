@@ -3,12 +3,6 @@
 This assumed you have a proxy/gateway server set up (e.g. on digitalocean) reachable on the domain gateway.eth.ec, running Ubuntu 16.04.
 
 ## WiFi Setup
-
-Get `radius-service.ethz.ch.cer` from your OSX keychain.
-
-sudo mkdir /etc/certs
-sudo cp radius-service.ethz.ch.cer /etc/certs/
-
 Add `ipv6` to `/etc/modules`.
 
 `/etc/wpa_supplicant/wpa_supplicant.conf`:
@@ -16,16 +10,15 @@ Add `ipv6` to `/etc/modules`.
     ctrl_interface=/var/run/wpa_supplicant
     network={
       ssid="eth"
-      scan_ssid=1
+      proto=RSN
       key_mgmt=WPA-EAP
-      pairwise=CCMP TKIP
-      group=CCMP TKIP
+      pairwise=CCMP
+      auth_alg=OPEN
       eap=PEAP
-      identity="<yourid>"
-      password="<yourpass>"
-      ca_cert="/etc/certs/radius-service.ethz.ch.cer"
-      phase1="peapver=0"
-      phase2="MSCHAPV2"
+      identity="YOURID"
+      password="YOURPASSWORD"
+      phase1="peaplabel=auto peapver=0"
+      phase2="auth=PAP"
     }
 
 `/etc/network/interfaces`:
