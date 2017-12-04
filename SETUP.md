@@ -1,6 +1,6 @@
 # Setup on RasPi
 
-This assumed you have a proxy/gateway server set up (e.g. on digitalocean) reachable on the domain gateway.eth.ec, running Ubuntu 16.04.
+This assumed you have a proxy/gateway server set up (e.g. on digitalocean) reachable on the domain gateway.eth.ec, running Ubuntu 16.04. Easiest way is to create a machine on Digitalocean (512mb RAM is more than enough), and point your DNS to it.
 
 ## WiFi Setup
 Add `ipv6` to `/etc/modules`.
@@ -94,12 +94,12 @@ Add the key like here:
     command="/bin/false",no-pty ssh-rsa AAAAB3Nz...GCBNc6P you@raspberrypi
 
 Also, the proxy server `/etc/ssh/sshd_config` needs the `GatewayPorts yes` option set.
-After a reboot, the app should be reachable at <http://138.68.85.236:5050/>.
+After a reboot, the app should be reachable at <http://gateway.eth.ec:5050/>.
 
 ## Slack setup
 Add a new slack command here: <https://ethec.slack.com/apps/A0F82E8CA-slash-commands>.
 
-* URL: <http://138.68.85.236:5050/dooropen/>
+* URL: <http://gateway.eth.ec:5050/dooropen/>
 * Method: `POST`
 
 Then, hash the token using `gen_hash.py` and add it to `config.txt` (copy the
