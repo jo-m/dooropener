@@ -1,4 +1,8 @@
-# CWS Door Opener
+# Coworking Space Door Opener
+
+This was in use at the old ETH Entrepreneur Club Coworking Space.
+
+The door opener is actuated through a RasPi GPIO pin, which is connected to the building door opener through a relay.
 
 Running on a Raspberry Pi. [Setup](SETUP.md).
 
